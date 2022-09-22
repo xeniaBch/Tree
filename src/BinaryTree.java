@@ -32,23 +32,21 @@ public class BinaryTree {
 
     public boolean search(int value){
         TreeNode p = root;
-        while(true) {
+        while(value != p.value) {
             if (value < p.value) {
                 if(p.leftChild != null) {
                     p = p.leftChild;
                 }else {
                     return false;
                 }
-            } else if(value > p.value){
+            } else {
                 if (p.rightChild != null){
                     p = p.rightChild;
                 } else {
                     return false;
                 }
-            } else {
-                return true;
             }
-        }
+        } return true;
 
     }
 
