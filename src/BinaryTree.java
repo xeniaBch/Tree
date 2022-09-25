@@ -1,5 +1,9 @@
 import com.sun.source.tree.Tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
 public class BinaryTree {
     TreeNode root;
 
@@ -47,6 +51,61 @@ public class BinaryTree {
                 }
             }
         } return true;
+
+    }
+
+    public void pass(){
+        inOrder(root);
+    }
+
+    private void inOrder(TreeNode node) {
+        if(node == null) {
+            return;
+        }
+        inOrder(node.leftChild);
+        System.out.println(node.value);
+        inOrder(node.rightChild);
+
+    }
+
+    public void passIterative(){
+        inOrderIterative(root);
+    }
+
+    private void inOrderIterative (TreeNode node) {
+        Stack <TreeNode> st = new Stack<>();
+        while(!st.empty() || node != null){
+            if (node != null) {
+                st.push(node);
+                node = node.leftChild;
+            } else {
+                node = st.pop();
+                System.out.println(node.value);
+                node = node.rightChild;
+            }
+        }
+
+    }
+
+    public void passBfs(){
+        bfs(root);
+    }
+
+    private void bfs(TreeNode node) {
+        Queue <TreeNode> queue = new LinkedList<>();
+        queue.add(node);
+        while(!queue.isEmpty()){
+            node = queue.remove();
+            System.out.println(node.value);
+            if(node.leftChild != null){
+                queue.add(node.leftChild);
+            }
+            if (node.rightChild != null){
+                queue.add(node.rightChild);
+            }
+        }
+
+
 
     }
 
